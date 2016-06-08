@@ -2,4 +2,4 @@
 
 cd /app/mongoclient-master
 
-/usr/local/bin/meteor --port 3000
+INSTALL_TMPDIR="/tmp/.meteor-install-tmp" /usr/local/bin/meteor --port 3000
