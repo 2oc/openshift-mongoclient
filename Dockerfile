@@ -13,7 +13,7 @@ rm -f /var/cache/apk/*
 
 ADD run.sh /app/run.sh
 
-RUN mkdir //.meteor-install-tmp && chown 1000050000:root //.meteor-install-tmp && chmod a+rwxt //.meteor-install-tmp && chmod a+x /app/run.sh && chmod -R a+rwx /app && chown 1000050000:root /app
+RUN mkdir //.meteor-install-tmp && chmod a+rwx / && chmod a+rwxt //.meteor-install-tmp && chmod a+x /app/run.sh && chmod -R a+rwx /app
 
 # Exposed Port
 EXPOSE 3000
