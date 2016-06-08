@@ -13,7 +13,7 @@ rm -f /var/cache/apk/*
 
 ADD run.sh /app/run.sh
 
-RUN chmod a+rx /app/run.sh && chmod  a+rx /app
+RUN chmod a+rx /app/run.sh && chmod  a+rwx /app && mkdir /app/user && chmod a+rwx /app/user
 
 # Exposed Port
 EXPOSE 3000
