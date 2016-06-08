@@ -2,24 +2,25 @@ FROM alpine:3.4
 MAINTAINER Joeri van Dooren <ure@mororless.be>
 
 RUN apk update && apk add tzdata bash tar rsync  \
-wget curl git vim && \
+wget curl git vim unzip && \
 apk upgrade && \
 cp /usr/share/zoneinfo/Europe/Brussels /etc/localtime && \
 echo "Europe/Brussels" >  /etc/timezone && \
 curl https://install.meteor.com/ | sh && \
+cd / && wget https://github.com/rsercano/mongoclient/archive/master.zip && \
+unzip master.zip && rm -f master.zip && \
 rm -f /var/cache/apk/*
 
-# Your app
-ADD app/
+ADD run.sh /run.sh
+
+RUN chmod a+x /run.sh
 
 # Exposed Port
 EXPOSE 3000
 
-# VOLUME /app
-WORKDIR /app
+WORKDIR /mongoclient-master
 
-#ENTRYPOINT ["/app/run.sh"]
-ENTRYPOINT ["/bin/bash"]
+ENTRYPOINT ["/app/run.sh"]
 
 # Set labels used in OpenShift to describe the builder images
 LABEL io.k8s.description="Meteor" \
