@@ -7,20 +7,20 @@ apk upgrade && \
 cp /usr/share/zoneinfo/Europe/Brussels /etc/localtime && \
 echo "Europe/Brussels" >  /etc/timezone && \
 curl https://install.meteor.com/ | sh && \
-cd / && wget https://github.com/rsercano/mongoclient/archive/master.zip && \
+mkdir /app && cd /app && wget https://github.com/rsercano/mongoclient/archive/master.zip && \
 unzip master.zip && rm -f master.zip && \
 rm -f /var/cache/apk/*
 
-ADD run.sh /run.sh
+ADD run.sh /app/run.sh
 
-RUN chmod a+x /run.sh
+RUN chmod a+x /app/run.sh && chmod -R a+rwx /app
 
 # Exposed Port
 EXPOSE 3000
 
-WORKDIR /mongoclient-master
+WORKDIR /app/mongoclient-master
 
-ENTRYPOINT ["/run.sh"]
+ENTRYPOINT ["/app/run.sh"]
 
 # Set labels used in OpenShift to describe the builder images
 LABEL io.k8s.description="Meteor" \
