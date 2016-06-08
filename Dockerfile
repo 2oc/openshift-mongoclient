@@ -6,6 +6,7 @@ wget curl git vim && \
 apk upgrade && \
 cp /usr/share/zoneinfo/Europe/Brussels /etc/localtime && \
 echo "Europe/Brussels" >  /etc/timezone && \
+curl https://install.meteor.com/ | sh && \
 rm -f /var/cache/apk/*
 
 # Your app
@@ -17,7 +18,8 @@ EXPOSE 3000
 # VOLUME /app
 WORKDIR /app
 
-ENTRYPOINT ["/app/run.sh"]
+#ENTRYPOINT ["/app/run.sh"]
+ENTRYPOINT ["/bin/bash"]
 
 # Set labels used in OpenShift to describe the builder images
 LABEL io.k8s.description="Meteor" \
