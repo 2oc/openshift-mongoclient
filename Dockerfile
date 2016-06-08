@@ -20,7 +20,7 @@ EXPOSE 3000
 
 WORKDIR /mongoclient-master
 
-ENTRYPOINT ["/app/run.sh"]
+ENTRYPOINT ["/run.sh"]
 
 # Set labels used in OpenShift to describe the builder images
 LABEL io.k8s.description="Meteor" \
